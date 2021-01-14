@@ -1,10 +1,10 @@
 const axios = require('axios');
 
-exports.getRates = (req, res, next)=>{
+const getCurrencyRates = (req, res, next)=>{
 
     //Check if there is Query parameters in the request
     if(req.ourQuery){
-        axios.get('https://api.exchangeratesapi.io/latest?base='+req.ourQuery.base)
+        axios.get(`https://api.exchangeratesapi.io/latest?base=${req.ourQuery.base}`)
         .then(function (response) {
 
             //Correct response to be returned
@@ -50,3 +50,5 @@ exports.getRates = (req, res, next)=>{
         })
     }   
 }
+
+module.exports = getCurrencyRates

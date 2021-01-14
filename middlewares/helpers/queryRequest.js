@@ -1,4 +1,4 @@
-exports.confirmQueryRequest = (obj) =>{
+exports.queryRequest = (obj) =>{
     if(Object.keys(obj).length > 2){
         var err = new Error("More queries than needed");
             err.status = 403;

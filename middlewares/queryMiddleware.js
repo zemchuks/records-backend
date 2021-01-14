@@ -1,18 +1,16 @@
-const {confirmQueryRequest}  = require("./helpers/confirmQueryRequest");
-const axios = require("axios");
+const {queryRequest}  = require("./helpers/queryRequest");
 
-exports.queryRoute= (req, res, next)=>{
+const queryRoute = (req, res, next)=>{
         //Check if there is any query on the route
         if(Object.keys(req.query).length <= 0 && req.query.constructor === Object) {
           
           //GO to default route /api/rates
           next();
         } 
-        //If Query is in url
         else {
 
-           //Check if the query is the accepted query
-           if(confirmQueryRequest(req.query)){//IF true
+           // If Query is in url, Check if the query is the accepted query
+           if(queryRequest(req.query)){//IF true
                 let base = req.query.base;
                 let currency = req.query.currency;
 
@@ -28,3 +26,5 @@ exports.queryRoute= (req, res, next)=>{
            }
         }       
 }
+
+module.exports = queryRoute
